@@ -1,5 +1,7 @@
 const calc = new FusionCalculator(customPersonaeByArcana);
 
+// console.log(calc.getAllResultingRecipesFrom(personaMap.Abaddon));
+
 const listOfPersonas = Object.keys(personaMap);
 
 const graph = {}
@@ -33,19 +35,46 @@ listOfPersonas.forEach(personaName => {
   // console.log(typeof fusionToRecipes);
 });
 
-const t = new DependenTree('.foo', { maxDepth: 11 });
+const t = new DependenTree('div', { maxDepth: 11 });
 
 t.addEntities(graph);
 
-const g = t.upstream;
+const { upstream, downstream } = t;
 
 // t.setTree('Abaddon');
 
-'Abaddon => King Frost';
-
-// search through abbadon's deps
-  // if any of those strings have a match, continue
-    // find the one
 
 
-    //max depth or this will continue forever.
+const results = [];
+
+const recurse = (node, target, depth = 4, path = '') => {
+  path += " => " + node._name;
+  if (node._name === target) {
+    // console.log(path);
+    results.push(path);
+    return;
+  }
+
+  if (depth === 0) {
+    return;
+  }
+
+  node._deps.forEach(dep => {
+    recurse(dep, target, depth - 1, path);
+  });
+
+}
+
+
+const a = performance.now();
+
+// starting point, target
+recurse(downstream.Abaddon, 'King Frost', 6);
+const b = performance.now();
+
+// results.forEach(console.log.bind(this))
+
+console.log(b - a, 'milliseconds');
+console.log((b - a) / 1000, 'seconds');
+// console.log(upstream.Arsene._deps)
+// console.log(downstream.Arsene._deps)
