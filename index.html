@@ -41,6 +41,7 @@
     }
 
     form button {
+      font-size: 20px;
       width: 100%;
     }
 
@@ -77,6 +78,14 @@
       align-self: flex-start;
       cursor: pointer;
     }
+
+    #stats {
+      font-style: italic;
+      font-family: Lato;
+      margin: 10px 0;
+      display: flex;
+      justify-content: space-around;;
+    }
 /* 
     @media (max-width: 820px) {
       form {
@@ -99,7 +108,8 @@
       <h1>Persona 5 Graph</h1>
       <button onclick="toggleDlc()">Edit DLC</button>
     </div>
-    <p>Want to fuse a persona but don't have the ingredients? Check the persona graph to figure out how many fusions and what recipes are required to make it.</p>
+    <p>Want to fuse a persona but don't have the ingredients? Check the persona graph to figure out how many fusions and what recipes are required to make it. View the fusion paths to see what you can fill with your compendium.</p>
+
     <form style="display: none;">
       <div>
         <input type="radio" name="version" value="vanilla">
@@ -111,8 +121,8 @@
       </div>
       <input type="checkbox" name="dlc" value="izanagi">  
       <label for="izanagi">Izanagi and Izanagi Picaro</label>
-      
     </form>
+
     <form id="main">
       <select name="p1" id="p1" class="p1">
         <option data-placeholder="true"></option>
@@ -128,8 +138,12 @@
         <option value="4">4 - Searching will be very slow, the page might crash</option>
       </select>
       <button type="button" onclick="search()">Search</button>
-    </section>
-  </form>
+    </form>
+    <div id="stats" style="display: none;">
+      <div id="num-paths">Number of fusion paths: <span></span></div>
+      <div id="time">Time to search in seconds: <span></span></div>
+    </div>
+  </section>
   <img id="load" style="height: 50px; width: 50px; display: none; margin: auto;" src='https://upload.wikimedia.org/wikipedia/commons/d/de/Ajax-loader.gif'>
   <div id="test"></div>
   <div id="tree"></div>

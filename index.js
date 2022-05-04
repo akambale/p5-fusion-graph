@@ -1,3 +1,16 @@
+const formatNum = (num) => {
+  num = num.toString();
+  num = num.split('').reverse().join('')
+  let str = '';
+  for (let i =0; i < num.length; i++) {
+    if (i % 3 === 0 && i < num.length) str += ',';
+    const char = num[i];
+    str += char;
+  }
+
+  return str.slice(1).split('').reverse('').join('');
+}
+
 class PersonaGraph {
   constructor(customPersonaeByArcana, personaMap) {
     this.calc = new FusionCalculator(customPersonaeByArcana);
@@ -165,7 +178,7 @@ new SlimSelect({
 
 new SlimSelect({
   select: p2,
-  placeholder: 'Select the Persona you want to make'
+  placeholder: 'Select the Persona you want to fuse'
 });
 
 
@@ -185,6 +198,10 @@ function toggleDlc () {
   }
 }
 
+const stats = document.getElementById('stats');
+const timeEl = document.querySelector('div#time > span')
+const paths = document.querySelector('div#num-paths > span')
+
 function search() {
   const start = p1.value;
   const end = p2.value;
@@ -195,8 +212,11 @@ function search() {
   }
   toggleGif();
   setTimeout(() => { 
-    console.log(d.dfs(start, end, depth));
+    const { time, numPaths } = d.dfs(start, end, depth);
     toggleGif();
+    timeEl.innerText = time;
+    paths.innerText = formatNum(numPaths);
+    stats.style.display = 'flex';
   }, 50);
 }
 
