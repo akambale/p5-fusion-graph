@@ -1,4 +1,3 @@
-
 /**********************************/
 /********** Graph Logic  **********/
 /**********************************/
@@ -22,6 +21,7 @@ class PersonaGraph {
     const graphObj = {
       _name: personaName,
       _deps: [],
+      _link: `https://chinhodado.github.io/persona5_calculator/index${isRoyal ? 'Royal' : ''}.html#/persona/${personaName}`,
     }
   
     this.depsGraph[personaName] = graphObj;
@@ -39,6 +39,7 @@ class PersonaGraph {
       this.depsGraph[_name] = {
         _deps,
         _name,
+        Cost: `¥${formatNum(recipe.cost)}`,
       };
     }
   }
@@ -69,7 +70,7 @@ class PersonaDFS {
   }
 
   dfs(startingPersona, targetPersona, numFusions) {
-    this.reset();
+    this.numPaths = 0;
 
     const depth = numFusions * 2;
     
@@ -86,7 +87,7 @@ class PersonaDFS {
     // for exactly for its intended purpose, but that's fine. The
     // d3 code it abstracts away is plenty useful as is.
     if (this.newDownstream) {  
-      this.tree = new DependenTree(this.selectorString);
+      this.tree = new DependenTree(this.selectorString, { textClick });
       this.tree.addEntities([{_name: 'a'}]);
       this.tree.downstream = { [startingPersona]: this.newDownstream };
       this.tree.setTree(startingPersona, 'downstream');
@@ -98,13 +99,6 @@ class PersonaDFS {
       time: this.searchTime,
       numPaths: this.numPaths,
     }
-  }
-
-
-  reset() {
-    this.numPaths = 0;
-    if (!this.tree) return;
-    this.tree.passedContainerEl.innerHTML = '';
   }
   
   cloneNode(node) {
@@ -215,3 +209,10 @@ function generatePersonaList() {
   customPersonaeByArcana = generateCustomPersonaeByArcana(customPersonaList);
   arcanaMap = generateArcanaMap();
 }
+
+
+const textClick = (event, nodeData) => {
+  const _link = nodeData._link;
+  if (!_link) return;
+  window.open(_link, '_blank');
+};

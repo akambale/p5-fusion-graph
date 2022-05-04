@@ -11,6 +11,7 @@ const dlcForm = document.querySelector('#dlc-form');
 const dlcFormBtn = document.getElementById('dlc-form-button');
 const load = document.getElementById('load');
 const searchBtn = document.getElementById('search');
+const treeEl = document.querySelector('div#tree');
 
 new SlimSelect({
   select: select1,
@@ -34,8 +35,8 @@ if (!localStorage.getItem('royal')) localStorage.setItem('royal', true);
 
 
 /********************* Globals **********************/
-let personaDfs = makeGraph(customPersonaeByArcana);
 let isRoyal = JSON.parse(localStorage.getItem('royal'));
+let personaDfs = makeGraph(customPersonaeByArcana);
 
 const rarePersonaeVanilla = rarePersonae;
 const rareCombosVanilla = rareCombos;
@@ -92,6 +93,7 @@ searchBtn.addEventListener('click', function search() {
     return;
   }
   toggleGif();
+  treeEl.innerHTML = '';
   setTimeout(() => { 
     const { time, numPaths } = personaDfs.dfs(start, end, depth);
     toggleGif();
