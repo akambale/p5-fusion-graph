@@ -1,17 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <link rel="icon" sizes="192x192" href="https://chinhodado.github.io/persona5_calculator/favicon.ico">
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Persona 5 Royal Graph</title>
   <script src="https://unpkg.com/@square/dependentree@1.0.2/dist/dependentree.js"></script>
   <script src="https://chinhodado.github.io/persona5_calculator/data/Data5.js"></script>
-  <!-- <script src="https://chinhodado.github.io/persona5_calculator/data/Data5Royal.js"></script> -->
+  <script src="https://chinhodado.github.io/persona5_calculator/data/Data5Royal.js"></script>
   <script src="https://chinhodado.github.io/persona5_calculator/data/PersonaData.js"></script>
-  <!-- <script src="https://chinhodado.github.io/persona5_calculator/data/PersonaDataRoyal.js"></script> -->
+  <script src="https://chinhodado.github.io/persona5_calculator/data/PersonaDataRoyal.js"></script>
   <script src="https://chinhodado.github.io/persona5_calculator/data/SkillData.js"></script>
-  <!-- <script src="https://chinhodado.github.io/persona5_calculator/data/SkillDataRoyal.js"></script> -->
+  <script src="https://chinhodado.github.io/persona5_calculator/data/SkillDataRoyal.js"></script>
   <script src="https://chinhodado.github.io/persona5_calculator/src/DataUtil.js"></script>
   <script src="https://chinhodado.github.io/persona5_calculator/src/FusionCalculator.js"></script>
   <script src="https://chinhodado.github.io/persona5_calculator/src/PersonaController.js"></script>
@@ -30,12 +31,10 @@
     }
     
     h1, p {
-      font-family: Lato;
       padding-bottom: 20px;
     }
     
     form {
-      font-family: Lato;
       display: flex;
       flex-direction: column;
     }
@@ -58,6 +57,7 @@
 
     section {
       padding: 20px;
+      font-family: Lato;
     }
 
     body {
@@ -86,9 +86,24 @@
       display: flex;
       justify-content: space-around;;
     }
-/* 
-    @media (max-width: 820px) {
-      form {
+
+    h4 {
+      margin: 10px 0;
+    }
+
+    fieldset {
+      border: none;
+    }
+
+    #dlc-form {
+      border: 1px solid black;
+      margin: 10px;
+      padding: 10px;
+    }
+
+    @media (max-width: 500px) {
+      #stats {
+        flex-direction: column;
       }
 
       .ss-main {
@@ -96,21 +111,17 @@
         margin-bottom: 10px;
       }
       
-    } */
-
-    /* h1, p {
-    } */
+    }
   </style>
 </head>
 <body>
   <section>
     <div class="top">
-      <h1>Persona 5 Graph</h1>
-      <button onclick="toggleDlc()">Edit DLC</button>
+      <h1>Persona 5 Royal Graph</h1>
+      <button id="dlc-form-button">Game & DLC Settings</button>
     </div>
-    <p>Want to fuse a persona but don't have the ingredients? Check the persona graph to figure out how many fusions and what recipes are required to make it. View the fusion paths to see what you can fill with your compendium.</p>
-
-    <form style="display: none;">
+    <form id="dlc-form" style="display: none;">
+      <h4 style="margin-top: 0;">Select your game version</h4>  
       <div>
         <input type="radio" name="version" value="vanilla">
         <label for="vanilla">Persona 5 Vanilla</label>
@@ -119,17 +130,15 @@
         <input type="radio" name="version" value="royal">  
         <label for="royal">Persona 5 Royal</label>
       </div>
-      <input type="checkbox" name="dlc" value="izanagi">  
-      <label for="izanagi">Izanagi and Izanagi Picaro</label>
+      <h4>Select which DLC persona you have</h4>
+      <fieldset></fieldset>
     </form>
+    
+    <p>Want to fuse a persona but don't have the ingredients? Check the persona graph to figure out how many fusions and what recipes are required to make it. View the fusion paths to see what you can fill with your compendium.</p>
 
     <form id="main">
-      <select name="p1" id="p1" class="p1">
-        <option data-placeholder="true"></option>
-      </select>
-      <select name="p2" id="p2" class="p2">
-        <option data-placeholder="true"></option>
-      </select>
+      <select name="p1" id="p1" class="p1"></select>
+      <select name="p2" id="p2" class="p2"></select>
       <select name="numFusions" id="numFusions">
         <option data-placeholder="true"></option>
         <option value="1">1</option>
@@ -137,7 +146,7 @@
         <option value="3">3 - Searching will be slow</option>
         <option value="4">4 - Searching will be very slow, the page might crash</option>
       </select>
-      <button type="button" onclick="search()">Search</button>
+      <button type="button" id="search">Search</button>
     </form>
     <div id="stats" style="display: none;">
       <div id="num-paths">Number of fusion paths: <span></span></div>
@@ -147,6 +156,7 @@
   <img id="load" style="height: 50px; width: 50px; display: none; margin: auto;" src='https://upload.wikimedia.org/wikipedia/commons/d/de/Ajax-loader.gif'>
   <div id="test"></div>
   <div id="tree"></div>
+  <script src="graph.js"></script>
   <script src="index.js"></script>
 </body>
 </html>
