@@ -4,9 +4,9 @@
 /**********************************/
 
 class PersonaGraph {
-  constructor(customPersonaeByArcana, personaMap) {
-    this.calc = new FusionCalculator(customPersonaeByArcana);
-    this.listOfPersonas = Object.keys(personaMap);
+  constructor(myPersonaeByArcana) {
+    this.calc = new FusionCalculator(myPersonaeByArcana);
+    this.listOfPersonas = customPersonaList.map(p => p.name);
     this.depsGraph = {};
 
     this.listOfPersonas.forEach(this.populateDeps.bind(this));
@@ -60,8 +60,8 @@ class PersonaGraph {
 }
 
 class PersonaDFS {
-  constructor (selectorString) {
-    this.graph = new PersonaGraph(customPersonaeByArcana, personaMap);
+  constructor (selectorString, myPersonaeByArcana) {
+    this.graph = new PersonaGraph(myPersonaeByArcana, personaMap);
     this.upstream = this.graph.upstream;
     this.downstream = this.graph.downstream;
     this.selectorString = selectorString;
@@ -145,7 +145,7 @@ function makeGraph() {
   select1.innerHTML = '<option data-placeholder="true"></option>';
   select2.innerHTML = '<option data-placeholder="true"></option>';
 
-  const d = new PersonaDFS('div#tree');
+  const d = new PersonaDFS('div#tree', customPersonaeByArcana);
   d.graph.listOfPersonas.forEach(p => {
     const option = document.createElement('option');
     option.innerText = p;
@@ -177,7 +177,7 @@ function generateCustomPersonaList() {
   return arr;
 };
 
-function generateCustomPersonaeByArcana() {
+function generateCustomPersonaeByArcana(customPersonaList) {
   var personaeByArcana_ = {};
   for (var i = 0; i < customPersonaList.length; i++) {
       var persona = customPersonaList[i];
@@ -196,7 +196,22 @@ function generateCustomPersonaeByArcana() {
   return personaeByArcana_;
 }
 
+function generateArcanaMap() {
+  const map = {};
+  for (var i = 0; i < arcana2Combos.length; i++) {
+      const combo = arcana2Combos[i];
+      if (!map[combo.source[0]])
+          map[combo.source[0]] = {};
+      map[combo.source[0]][combo.source[1]] = combo.result;
+      if (!map[combo.source[1]])
+          map[combo.source[1]] = {};
+      map[combo.source[1]][combo.source[0]] = combo.result;
+  }
+  return map;
+};
+
 function generatePersonaList() {
   customPersonaList = generateCustomPersonaList();
-  personaeByArcana = generateCustomPersonaeByArcana();
+  customPersonaeByArcana = generateCustomPersonaeByArcana(customPersonaList);
+  arcanaMap = generateArcanaMap();
 }

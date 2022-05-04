@@ -1,6 +1,4 @@
 /****************** HTML Constants ******************/
-const p1 = document.querySelector('#p1');
-const p2 = document.querySelector('#p2');
 const numFusions = document.querySelector('#numFusions');
 const select1 = document.getElementById('p1');
 const select2 = document.getElementById('p2');
@@ -15,12 +13,12 @@ const load = document.getElementById('load');
 const searchBtn = document.getElementById('search');
 
 new SlimSelect({
-  select: p1,
+  select: select1,
   placeholder: 'Select a Persona you have'
 });
 
 new SlimSelect({
-  select: p2,
+  select: select2,
   placeholder: 'Select the Persona you want to fuse'
 });
 
@@ -36,7 +34,7 @@ if (!localStorage.getItem('royal')) localStorage.setItem('royal', true);
 
 
 /********************* Globals **********************/
-let personaDfs = makeGraph();
+let personaDfs = makeGraph(customPersonaeByArcana);
 let isRoyal = JSON.parse(localStorage.getItem('royal'));
 
 const rarePersonaeVanilla = rarePersonae;
@@ -51,7 +49,7 @@ const skillMapVanilla = skillMap;
 /********************* Init App **********************/
 swapGame();
 setDlcForm();
-// makeGraph();
+personaDfs = makeGraph(customPersonaeByArcana);
 
 document.getElementsByName('version')[isRoyal ? 1 : 0].checked = true;
 
@@ -72,7 +70,7 @@ dlcForm.addEventListener('change', (e) => {
     localStorage.setItem('royal', isRoyal);
   }
 
-  makeGraph();
+  personaDfs = makeGraph(customPersonaeByArcana);
 });
 
 
@@ -86,8 +84,8 @@ dlcFormBtn.addEventListener('click', function toggleDlcForm() {
 
 
 searchBtn.addEventListener('click', function search() {
-  const start = p1.value;
-  const end = p2.value;
+  const start = select1.value;
+  const end = select2.value;
   const depth = numFusions.value;
   if (!start || !end || !depth) {
     alert('Fill all the form fields')
