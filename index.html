@@ -18,8 +18,119 @@
   <script src="https://chinhodado.github.io/persona5_calculator/src/PersonaListController.js"></script>
   <script src="https://chinhodado.github.io/persona5_calculator/src/SkillListController.js"></script>
   <script src="https://chinhodado.github.io/persona5_calculator/src/SettingController.js"></script>
+
+  <link href='https://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/slim-select/1.27.1/slimselect.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/slim-select/1.27.1/slimselect.min.css" rel="stylesheet"></link>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+    }
+    
+    h1, p {
+      font-family: Lato;
+      padding-bottom: 20px;
+    }
+    
+    form {
+      font-family: Lato;
+      display: flex;
+      flex-direction: column;
+    }
+
+    form button {
+      width: 100%;
+    }
+
+    .ss-main {
+      /* margin-right: 20px; */
+      margin-bottom: 10px;
+      min-width: 240px;
+    }
+
+    #tree {
+      overflow: scroll;
+      height: 90vh;
+    }
+
+    section {
+      padding: 20px;
+    }
+
+    body {
+      max-width: 820px;
+      margin: auto;
+    }
+
+    .top {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: white;
+      border: 2px solid black;
+      border-radius: 5px;
+      align-self: flex-start;
+      cursor: pointer;
+    }
+/* 
+    @media (max-width: 820px) {
+      form {
+      }
+
+      .ss-main {
+        margin-right: 0;
+        margin-bottom: 10px;
+      }
+      
+    } */
+
+    /* h1, p {
+    } */
+  </style>
 </head>
 <body>
+  <section>
+    <div class="top">
+      <h1>Persona 5 Graph</h1>
+      <button onclick="toggleDlc()">Edit DLC</button>
+    </div>
+    <p>Want to fuse a persona but don't have the ingredients? Check the persona graph to figure out how many fusions and what recipes are required to make it.</p>
+    <form style="display: none;">
+      <div>
+        <input type="radio" name="version" value="vanilla">
+        <label for="vanilla">Persona 5 Vanilla</label>
+      </div>
+      <div>
+        <input type="radio" name="version" value="royal">  
+        <label for="royal">Persona 5 Royal</label>
+      </div>
+      <input type="checkbox" name="dlc" value="izanagi">  
+      <label for="izanagi">Izanagi and Izanagi Picaro</label>
+      
+    </form>
+    <form id="main">
+      <select name="p1" id="p1" class="p1">
+        <option data-placeholder="true"></option>
+      </select>
+      <select name="p2" id="p2" class="p2">
+        <option data-placeholder="true"></option>
+      </select>
+      <select name="numFusions" id="numFusions">
+        <option data-placeholder="true"></option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3 - Searching will be slow</option>
+        <option value="4">4 - Searching will be very slow, the page might crash</option>
+      </select>
+      <button type="button" onclick="search()">Search</button>
+    </section>
+  </form>
+  <img id="load" style="height: 50px; width: 50px; display: none; margin: auto;" src='https://upload.wikimedia.org/wikipedia/commons/d/de/Ajax-loader.gif'>
   <div id="test"></div>
   <div id="tree"></div>
   <script src="index.js"></script>
