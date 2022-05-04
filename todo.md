@@ -1,3 +1,5 @@
-dynamically generate dlc checkboxes based on `dlcPersona`;
-add links
+dlc isnt actually changing
+fix graph
+add links to each persona
+add cost to fusion
 about and blog links

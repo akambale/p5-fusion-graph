@@ -140,6 +140,8 @@ class PersonaDFS {
 }
 
 function makeGraph() {
+  generatePersonaList();
+
   select1.innerHTML = '<option data-placeholder="true"></option>';
   select2.innerHTML = '<option data-placeholder="true"></option>';
 
@@ -156,4 +158,45 @@ function makeGraph() {
   });
 
   return d;
+}
+
+function generateCustomPersonaList() {
+  var arr = [];
+  for (var key in personaMap) {
+      if (personaMap.hasOwnProperty(key)) {
+          var persona = personaMap[key];
+          if (persona.dlc && !isDlcPersonaOwned(key)) {
+              continue;
+          }
+          persona.name = key;
+          addStatProperties(persona);
+          addElementProperties(persona);
+          arr.push(persona);
+      }
+  }
+  return arr;
+};
+
+function generateCustomPersonaeByArcana() {
+  var personaeByArcana_ = {};
+  for (var i = 0; i < customPersonaList.length; i++) {
+      var persona = customPersonaList[i];
+      if (!personaeByArcana_[persona.arcana]) {
+          personaeByArcana_[persona.arcana] = [];
+      }
+      personaeByArcana_[persona.arcana].push(persona);
+  }
+  for (var key in personaeByArcana_) {
+      personaeByArcana_[key].sort(function (a, b) { return a.level - b.level; });
+  }
+  // Make sure this is always there regardless of DLC setting
+  if (!personaeByArcana_['World']) {
+      personaeByArcana_['World'] = [];
+  }
+  return personaeByArcana_;
+}
+
+function generatePersonaList() {
+  customPersonaList = generateCustomPersonaList();
+  personaeByArcana = generateCustomPersonaeByArcana();
 }
