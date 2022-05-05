@@ -21,6 +21,7 @@ class PersonaGraph {
     const graphObj = {
       _name: personaName,
       _deps: [],
+      Level: persona.level,
       _link: `https://chinhodado.github.io/persona5_calculator/index${isRoyal ? 'Royal' : ''}.html#/persona/${personaName}`,
     }
   
@@ -28,18 +29,23 @@ class PersonaGraph {
   
     for (let key in fusionToRecipes) {
       const recipe = fusionToRecipes[key];
-      
   
+      recipe.sources.sort((p1, p2) => p1.level - p2.level);
       const _deps = recipe.sources.map(source => source.name);
-      _deps.sort();
-  
+
       const _name = _deps.join(' + ');
+      const lowest = recipe.sources[0]
+      const highest = recipe.sources[recipe.sources.length - 1]
   
       graphObj._deps.push(_name);
       this.depsGraph[_name] = {
+        Cost: `¥${formatNum(recipe.cost)}`,
+        _cost: recipe.cost,
         _deps,
         _name,
-        Cost: `¥${formatNum(recipe.cost)}`,
+        _avg: (highest.level + lowest.level) / 2,
+        'Lowest Level Persona': `${lowest.name}, Level ${lowest.level}`,
+        'Highest Level Persona':`${highest.name}, Level ${highest.level}`,
       };
     }
   }
@@ -75,6 +81,7 @@ class PersonaDFS {
     const depth = numFusions * 2;
     
     const startTime = performance.now();
+ 
     this.newDownstream = this.recurse(this.downstream[startingPersona], targetPersona, depth);
     const endTime = performance.now();
     this.searchTime = ((endTime - startTime) / 1000).toFixed(2);
@@ -90,6 +97,7 @@ class PersonaDFS {
       this.tree = new DependenTree(this.selectorString, { textClick });
       this.tree.addEntities([{_name: 'a'}]);
       this.tree.downstream = { [startingPersona]: this.newDownstream };
+      this.recursiveSort(this.newDownstream);
       this.tree.setTree(startingPersona, 'downstream');
     } else {
       alert('No fusion paths found. Try increasing the max number of fusions.');
@@ -101,6 +109,13 @@ class PersonaDFS {
     }
   }
   
+  recursiveSort(node) {
+    node._deps.sort((a, b) => {
+      return a._avg - b._avg;
+    });
+    node._deps.forEach(this.recursiveSort.bind(this));
+  }
+  
   cloneNode(node) {
     return {
       ...node,
@@ -108,22 +123,23 @@ class PersonaDFS {
     }
   }
 
-  recurse(node, target, depth = 4, path = '') {
-    path += " => " + node._name;
-  
+  recurse(node, target, depth = 4, cumCost = 0) {  
     const clone = this.cloneNode(node);
   
     if (node._name === target) {
       this.numPaths++;
+      clone['Total Cost'] = `¥${formatNum(cumCost)}`;
       return clone;
     }
   
     if (depth === 0) {
       return false;
     }
+
+    const newCost = node._cost ? node._cost + cumCost : cumCost
   
     node._deps.forEach(dep => {
-      const childClone = this.recurse(dep, target, depth - 1, path);
+      const childClone = this.recurse(dep, target, depth - 1, newCost);
       if (childClone) {
         clone._deps.push(childClone);
       }

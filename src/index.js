@@ -141,8 +141,8 @@ function setDlcForm() {
     const checked = dlcObj[list] ? 'checked' : '';
     return acc + `
       <div class="check-group">
-        <input type="checkbox" value="${list}" name="${list}" ${checked}>
-        <label for="${list}">${list}</label>
+        <input type="checkbox" value="${list}" name="${list}" id="check-${list}" ${checked}>
+        <label for="check-${list}">${list}</label>
       </div>
     `;
   }, '');
