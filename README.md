@@ -44,11 +44,15 @@ Tracing these paths manually is pretty tedious! But the nice part is that we hav
 
 If you've used the Persona Graph, you'll noticed that I limit the number of fusions you can search to four. And even choosing four is ill advised. The deeper we search, the more paths we explore and the more time it will take.
 
-If every persona had 100 fusions and you you search for two levels of fusions, that is 10 thousand paths to explore (100 * 100). With three, that results in 1 million (100^3). Four, 100 million (100^4). You can see how this adds up quickly! Though computers are fast, there are limits. 
+If every persona had 100 fusions and you search for two levels of fusions, that is 10 thousand paths to explore (100 * 100). With three, that results in 1 million (100^3). Four, 100 million (100^4). You can see how this adds up quickly! Though computers are fast, there are limits. 
 
-Despite this limitation, it's probably unlikely you'll want to do more than a few fusions to get to your desired persona. Summoning personas to use from the compendium isn't cheap! You'd have to grind Momentos for awhile to save up enough yen. And luckily, that is my favorite feature of the Persona Graph. You can fxwind the least expensive (and lowest level) personas by following the top path on the graph.
+Despite this limitation, it's probably unlikely you'll want to do more than a few fusions to get to your desired persona. Summoning personas to use from the compendium isn't cheap! You'd have to grind Momentos for awhile to save up enough yen. And luckily, that is my favorite feature of the Persona Graph. You can find the least expensive (and lowest level) personas by following the top path on the graph.
 
 You can use all this money saved to visit the Maid Café . . . or whatever it is you like doing after school.
+
+#### A Brief Note on Cost
+
+These costs are approximate. The `Total Cost` seen at the end of the graph doesn't factor into account that you don't have to pay for the persona you already have on each fusion step. However, the costs relative to each other should be accurate. The cheapest path should always be on the top path of the graph. 
 
 ## Credits
 
