@@ -108,7 +108,7 @@ searchBtn.addEventListener('click', function search() {
 /**********************************/
 
 function swapGame() {
-  const text = `Persona 5 ${isRoyal ? 'Royal ' : ''}Graph`;
+  const text = `Persona 5 ${isRoyal ? 'Royal ' : ''}Fusion Graph`;
   document.title = text;
   document.querySelector('h1').innerText = text;
 

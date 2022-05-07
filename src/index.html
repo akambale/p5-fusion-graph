@@ -20,7 +20,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Persona 5 Royal Graph</title>
+  <title>Persona 5 Royal Fusion Graph</title>
   <script src="https://unpkg.com/@square/dependentree@1.0.2/dist/dependentree.js"></script>
   <script src="https://chinhodado.github.io/persona5_calculator/data/Data5.js"></script>
   <script src="https://chinhodado.github.io/persona5_calculator/data/Data5Royal.js"></script>
@@ -35,18 +35,41 @@
   <script src="https://chinhodado.github.io/persona5_calculator/src/SkillListController.js"></script>
   <script src="https://chinhodado.github.io/persona5_calculator/src/SettingController.js"></script>
 
-  <link href='https://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
-
   <script src="https://cdnjs.cloudflare.com/ajax/libs/slim-select/1.27.1/slimselect.min.js"></script>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/slim-select/1.27.1/slimselect.min.css" rel="stylesheet"></link>
   <style>
     * {
       padding: 0;
       margin: 0;
+      color: white;
+      background-color: black;
+    }
+
+    @font-face {
+      font-family: Arsenal;
+      src: url(./Arsenal-Regular.ttf);
+    }
+
+    @font-face {
+      font-family: Helvetica Now Display;
+      src: url(./HelveticaNowDisplay-Regular.ttf);
+    }
+
+
+
+    text, tspan, p {
+      font-family: Arsenal;
+      transform: scale(1.15, 1);
+      margin: 0 7.5%;
+      font-size: 16px;
     }
     
     h1, p {
       padding-bottom: 20px;
+    }
+
+    h1 {
+      color: #ff0505;
     }
     
     form {
@@ -72,7 +95,7 @@
 
     section {
       padding: 20px;
-      font-family: Lato;
+      font-family: Helvetica Now Display;
     }
 
     body {
@@ -87,17 +110,20 @@
 
     button {
       padding: 10px 20px;
-      background-color: white;
-      border: 2px solid black;
+      border: 2px solid #ff0505;
       border-radius: 5px;
       align-self: flex-start;
       cursor: pointer;
+      font-family: Helvetica Now Display; 
+      color: #ff0505;
+      background-color: black
     }
 
     #stats {
       font-style: italic;
-      font-family: Lato;
-      margin: 10px 0;
+      font-family: Arsenal;
+      transform: scale(1.15, 1);
+      margin: 10px 30px;
       display: flex;
       justify-content: space-around;;
     }
@@ -111,7 +137,7 @@
     }
 
     #dlc-form {
-      border: 1px solid black;
+      border: 1px solid #ff0505;
       margin: 10px;
       padding: 10px;
     }
@@ -120,7 +146,17 @@
       position: fixed;
       bottom: 0;
       padding: 20px;
-      font-family: Lato;
+      font-family: Arsenal;
+      transform: scale(1.15, 1);
+      color: #ff0505;
+    }
+
+    a:link, a:visited {
+      color: #ff0505
+    }
+
+    div.ss-single-selected, .ss-search > input {
+      background-color: inherit !important;
     }
 
     @media (max-width: 500px) {
@@ -139,7 +175,7 @@
 <body>
   <section>
     <header class="top">
-      <h1>Persona 5 Royal Graph</h1>
+      <h1>Persona 5 Royal Fusion Graph</h1>
       <button id="dlc-form-button">Game & DLC Settings</button>
     </header>
     <form id="dlc-form" style="display: none;">

@@ -94,7 +94,22 @@ class PersonaDFS {
     // for exactly for its intended purpose, but that's fine. The
     // d3 code it abstracts away is plenty useful as is.
     if (this.newDownstream) {  
-      this.tree = new DependenTree(this.selectorString, { textClick });
+      this.tree = new DependenTree(this.selectorString, {
+        textClick ,
+        horizontalSpaceBetweenNodes: 200,
+        verticalSpaceBetweenNodes: 50,
+        circleStrokeColor: '#ff0505',
+        closedNodeCircleColor	: 'white',
+        openNodeCircleColor: 'black',
+        textStyleColor: 'white',
+        linkStrokeColor: '#ff0505',
+        tooltipStyleObj: {
+          border: 'solid',
+          'border-width': '1px',
+          'border-radius': '5px',
+          padding: '10px'
+        }
+      });
       this.tree.addEntities([{_name: 'a'}]);
       this.tree.downstream = { [startingPersona]: this.newDownstream };
       this.recursiveSort(this.newDownstream);

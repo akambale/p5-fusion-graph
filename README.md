@@ -6,7 +6,7 @@ An app that builds a Persona Graph. Persona players can use the graph to search 
 
 ### Intro
 
-When I played Persona 5 Royal for the first time, I had a ton of fun completing the Strength confidant and filling up my compendium. I found the [Persona 5 Calculator](https://chinhodado.github.io/persona5_calculator/indexRoyal.html#/list) which made this much easier. However, I often-times only had a few personas I was willing to fuse and a limited amount of yen to buy from the compendium. I wanted to find a way to make it easy to search for possible fusions after a few combinations.
+When I played Persona 5 Royal for the first time, I had a ton of fun completing the Strength confidant and filling up my compendium. I found the [Persona 5 Calculator](https://chinhodado.github.io/persona5_calculator/indexRoyal.html#/list) which made this much easier. However, I often-times only had a few personas I was willing to fuse and limited yen to buy from the compendium. I wanted to find a way to make it easy to search for possible fusions after a few combinations.
 
 ### What is a Graph ?
 
