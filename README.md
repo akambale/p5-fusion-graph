@@ -1,14 +1,14 @@
-# Persona 5 Graph
+# Persona 5 Fusion Graph
 
-An app that builds a Persona Graph. Persona players can use the graph to search for fusion paths based on the personas they have. 
+An app that builds a Fusion Graph. Persona players can use the graph to search for fusion paths based on the personas they have. 
 
-## What is a Persona Graph?
+## What is a Fusion Graph?
 
 ### Intro
 
-When I played Persona 5 Royal for the first time, I had a ton of fun completing the Strength confidant and filling up my compendium. I found the [Persona 5 Calculator](https://chinhodado.github.io/persona5_calculator/indexRoyal.html#/list) which made this much easier. However, I often-times only had a few personas I was willing to fuse and limited yen to buy from the compendium. I wanted to find a way to make it easy to search for possible fusions after a few combinations.
+When I played Persona 5 Royal for the first time, I had a ton of fun completing the Strength confidant and filling up my compendium. I found the [Persona 5 Calculator](https://chinhodado.github.io/persona5_calculator/indexRoyal.html#/list) which made this much easier. However, I often-times only had a few personas I was willing to fuse and limited yen to buy from the compendium. I wanted to make it easy to search for possible fusions after a few combinations.
 
-### What is a Graph ?
+### What is a Graph?
 
 Say that you are playing Persona 5 Royal without any DLC, and you want to fuse [Jack Frost](https://chinhodado.github.io/persona5_calculator/indexRoyal.html#/persona/Jack%20Frost) (He Ho!) You have Angel and Bicorn, so you decide to fuse the two.
 
@@ -32,19 +32,19 @@ A graph diagram like the above is pretty overwhelming. When we just focus on two
 
 ### How we search
 
-We take a look at a starting persona and explore every possible path. If we start with Jack-o'-Lantern from the image above, we see the results of fusing him with Berith, Pixie, Arsene, Stone of Scone, and Sandman. The last two will get us to Jack Frost, yay! But the others will result in Mokoi, Incubus, and Mandrake. From there, we explore further. Mandrake doesn't have any paths that lead to Jack Frost, but we can fuse Incubus with Kelpie to make Moki. And Mokoi fused with Silky will get us to Jack Frost.
+We take a look at a starting persona and explore every possible path. If we start with Jack-o'-Lantern from the image above, we see the results of fusing him with Berith, Pixie, Arsene, Stone of Scone, and Sandman. The last two will get us to Jack Frost, yay! But the others will result in Mokoi, Incubus, and Mandrake. From there, we explore further. Mandrake doesn't have any paths that lead to Jack Frost, but we can fuse Incubus with Kelpie to make Mokoi. And Mokoi fused with Silky will get us to Jack Frost.
 
-Tracing these paths manually is pretty tedious! But the nice part is that we have computers to do the searching for us. They can get it done pretty quickly and they never get bored. What we have described is called a search algorithm.
+Tracing these paths manually is pretty tedious! But the nice part is that we have computers to do the searching for us. They can get it done pretty quickly and they never get bored. What we have described is a search algorithm.
 
 ### Limits
 
-If you've used the Persona Graph, you'll noticed that I limit the number of fusions you can search to four. And even choosing four is ill advised. The deeper we search, the more paths we explore and the more time it will take. Though computers are fast, there are limits.
+If you've used the Fusion Graph, you've noticed that I limit the number of fusions you can search to four. And even choosing four is ill advised. The deeper we search, the more paths we explore and the more time it will take. Though computers are fast, there are limits.
 
 If every persona had 100 fusions and you search for two levels of fusions, that is 10 thousand paths to explore (100 * 100). With three, that results in 1 million (100^3). Four, 100 million (100^4). You can see how this adds up quickly!
 
-Despite this limitation, it's probably unlikely you'll want to do more than a few fusions to get to your desired persona. Summoning personas to use from the compendium isn't cheap! You'd have to grind Mementos for awhile to save up enough yen. And luckily, that is my favorite feature of the Persona Graph. You can find the least expensive (and lowest level) personas by following the top path on the graph.
+Despite this limitation, it's probably unlikely you'll want to do more than a few fusions to get to your desired persona. Summoning personas to use from the compendium isn't cheap! You'd have to grind Mementos for awhile to save up enough yen. And luckily, that is my favorite feature of the Fusion Graph. You can find the least expensive (and lowest level) personas by following the top path on the graph.
 
-You can use all the money saved you've to visit the Maid Café . . . or whatever it is you like doing after school.
+You can spend all the money you've saved at the Maid Café . . . or whatever it is you like doing after school.
 
 #### A Brief Note on Cost
 
