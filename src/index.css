@@ -1,0 +1,131 @@
+* {
+  padding: 0;
+  margin: 0;
+  color: white;
+  background-color: black;
+}
+
+@font-face {
+  font-family: Arsenal;
+  src: url(./Arsenal-Regular.ttf);
+}
+
+@font-face {
+  font-family: Helvetica Now Display;
+  src: url(./HelveticaNowDisplay-Regular.ttf);
+}
+
+
+
+text, tspan, p {
+  font-family: Arsenal;
+  transform: scale(1.15, 1);
+  margin: 0 7.5%;
+  font-size: 16px;
+}
+
+h1, p {
+  padding-bottom: 20px;
+}
+
+h1 {
+  color: #ff0505;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+form button {
+  font-size: 20px;
+  width: 100%;
+}
+
+.ss-main {
+  /* margin-right: 20px; */
+  margin-bottom: 10px;
+  min-width: 240px;
+}
+
+#tree {
+  overflow: scroll;
+  height: 90vh;
+}
+
+section {
+  padding: 20px;
+  font-family: Helvetica Now Display;
+}
+
+body {
+  max-width: 820px;
+  margin: auto;
+}
+
+.top {
+  display: flex;
+  justify-content: space-between;
+}
+
+button {
+  padding: 10px 20px;
+  border: 2px solid #ff0505;
+  border-radius: 5px;
+  align-self: flex-start;
+  cursor: pointer;
+  font-family: Helvetica Now Display; 
+  color: #ff0505;
+  background-color: black
+}
+
+#stats {
+  font-style: italic;
+  font-family: Arsenal;
+  transform: scale(1.15, 1);
+  margin: 10px 30px;
+  display: flex;
+  justify-content: space-around;;
+}
+
+h4 {
+  margin: 10px 0;
+}
+
+fieldset {
+  border: none;
+}
+
+#dlc-form {
+  border: 1px solid #ff0505;
+  margin: 10px;
+  padding: 10px;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  padding: 20px;
+  font-family: Arsenal;
+  transform: scale(1.15, 1);
+  color: #ff0505;
+}
+
+a:link, a:visited {
+  color: #ff0505
+}
+
+div.ss-single-selected, .ss-search > input {
+  background-color: inherit !important;
+}
+
+@media (max-width: 500px) {
+  #stats {
+    flex-direction: column;
+  }
+
+  .ss-main {
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+}
